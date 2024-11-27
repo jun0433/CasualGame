@@ -18,10 +18,10 @@ MonoBehaviour:
   packageName: com.DefaultCompany.2DProject
   sendLogReport: 1
   timeOutSec: 100
-  Version: 5.14.1
+  Version: 5.15.1
   autoRefreshToken: 1
   retryWhenClientRequestFailError: 1
   retryWhenServerError: 1
   initFailWhenDeviceIdUnknown: 1
   autoLoadLocationProperties: 1
-  waitUntilInitializeFinish: 1
+  waitUntilInitializeFinish: 0

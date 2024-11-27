@@ -72,4 +72,6 @@ public class BackendLogin
             Debug.LogError("닉네임 변경에 실패했습니다 : " + bro);
         }
     }
+
+
 }
