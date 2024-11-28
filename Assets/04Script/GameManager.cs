@@ -1,18 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public enum SceneName
 {
-    // Start is called before the first frame update
-    void Start()
+    IntroScene,
+    TitleScene,
+    //LoadingScene,
+}
+
+
+public class GameManager : Singleton<GameManager>
+{
+
+
+    #region _SceneChange_
+    private SceneName nextLoadScene;
+    public SceneName NEXTSCENE
     {
-        
+        get => nextLoadScene;
     }
 
-    // Update is called once per frame
-    void Update()
+    // 씬을 교체할때 사용하는 함수
+    public void AsyncLoadingNextScene(SceneName nextScene)
     {
-        
+        nextLoadScene = nextScene;
+
+        SceneManager.LoadScene(nextScene.ToString());
     }
+
+    #endregion
+
+
 }

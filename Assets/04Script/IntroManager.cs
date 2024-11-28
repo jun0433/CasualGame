@@ -8,6 +8,9 @@ public class IntroManager : MonoBehaviour
     [SerializeField]
     private Progress progress;
 
+    [SerializeField]
+    private SceneName nextScene;
+
     private void Awake()
     {
         SystemSetup();
@@ -34,6 +37,6 @@ public class IntroManager : MonoBehaviour
 
     private void OnAfterProgress()
     {
-
+        GameManager.Inst.AsyncLoadingNextScene(nextScene);
     }
 }

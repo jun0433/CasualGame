@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
+using TMPro;
 // 뒤끝 SDK namespace 추가
 using BackEnd;
+
+
 
 public class BackendLogin
 {
