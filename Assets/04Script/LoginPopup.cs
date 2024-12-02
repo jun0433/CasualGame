@@ -88,6 +88,7 @@ public class LoginPopup : LoginBase
             if (callback.IsSuccess())
             {
                 SetMessage($"{inputFieldID.text}님 환영합니다.");
+                LeanTween.scale(loginPopup, Vector3.zero, 0.2f).setEase(LeanTweenType.clamp);
             }
             // 로그인 실패
             else
@@ -147,13 +148,15 @@ public class LoginPopup : LoginBase
     // 로그인 창 열기
     public void OnClick_LoginPopupBtn()
     {
-        LeanTween.scale(loginPopup, Vector3.one, 0.4f).setEase(LeanTweenType.clamp);
+        LeanTween.scale(loginPopup, Vector3.one, 0.2f).setEase(LeanTweenType.clamp);
     }
 
     // 로그인 창 닫기
     public void OnClick_LoginCancelBtn()
     {
-        LeanTween.scale(loginPopup, Vector3.zero, 0.4f).setEase(LeanTweenType.clamp);
+        // ID,PW 색상과 내용 초기화
+        ResetUI(imageID, imagePW);
+        LeanTween.scale(loginPopup, Vector3.zero, 0.2f).setEase(LeanTweenType.clamp);
     }
 
 
