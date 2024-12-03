@@ -9,15 +9,25 @@ public class FindID : LoginBase
 {
 
     [SerializeField]
-    private GameObject findIDPopup;
+    private GameObject findIDPopup; // 아이디 찾기 팝업창
 
     [SerializeField]
-    private Image imageEmail;
-    [SerializeField]
-    private TMP_InputField inputFieldEmail;
+    private Image imageEmail; // 이메일 입력창
 
     [SerializeField]
-    private Button findIDBtn;
+    private TMP_InputField inputFieldEmail; // 이메일 입력필드
+
+    [SerializeField]
+    private Button findIDBtn; // 아이디 찾기 버튼
+    [SerializeField]
+    private Button cancelBtn; // 아이디 찾기 팝업창 닫기 버튼
+
+
+    private void Awake()
+    {
+        cancelBtn.onClick.AddListener(OnClick_FindIDCancelBtn);
+        findIDBtn.onClick.AddListener(OnClick_FindID);
+    }
 
     public void OnClick_FindID()
     {
@@ -50,12 +60,12 @@ public class FindID : LoginBase
     private void FindCustomID()
     {
         // 아이디 정보를 이메일로 발송
-        Backend.BMember.FindCustomID(inputFieldEmail.text, callbck =>
+        Backend.BMember.FindCustomID(inputFieldEmail.text, callback =>
         {
             // 아이디 찾기 버튼 활성화
             findIDBtn.interactable = true;
 
-            if (callbck.IsSuccess())
+            if (callback.IsSuccess())
             {
                 SetMessage($"{inputFieldEmail.text} 주소로 메일을 발송하였습니다.");
             }
@@ -64,7 +74,7 @@ public class FindID : LoginBase
             {
                 string message = string.Empty;
 
-                switch (int.Parse(callbck.GetStatusCode()))
+                switch (int.Parse(callback.GetStatusCode()))
                 {
                     case 404: // 해당 이메일의 게이머가 존재하지 않음
                         message = "해당 이메일을 사용하는 사용자가 없습니다.";
@@ -74,7 +84,7 @@ public class FindID : LoginBase
                         break;
                     default:
                         // statusCode 400 => 프로젝트 명에 특수문자가 추가된 경우(안내 메일 미발송 및 에러 발생
-                        message = callbck.GetMessage();
+                        message = callback.GetMessage();
                         break;
                 }
 
@@ -89,5 +99,20 @@ public class FindID : LoginBase
                 }
             }
         });
+    }
+
+    // 아이디 찾기 팝업창 켜기
+    public void OnClick_FindIDPopupBtn()
+    {
+        LeanTween.scale(findIDPopup, Vector3.one, 0.2f).setEase(LeanTweenType.clamp);
+    }
+
+
+    // 아이디 찾기 팝업창 끄기
+    public void OnClick_FindIDCancelBtn()
+    {
+        //InputField UI의 색상과 매개변수 초기화
+        ResetUI(imageEmail);
+        LeanTween.scale(findIDPopup, Vector3.zero, 0.2f).setEase(LeanTweenType.clamp);
     }
 }

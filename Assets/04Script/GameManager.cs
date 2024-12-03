@@ -7,6 +7,7 @@ public enum SceneName
 {
     IntroScene,
     TitleScene,
+    LobbyScene,
     //LoadingScene,
 }
 

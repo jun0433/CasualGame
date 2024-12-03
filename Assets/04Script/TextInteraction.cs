@@ -32,9 +32,10 @@ public class TextInteraction : MonoBehaviour, IPointerEnterHandler, IPointerExit
         text.fontStyle = FontStyles.Normal;
     }
 
+    // 각 오브젝트마다 event를 다르게 넣기
     public void OnPointerClick(PointerEventData eventData)
     {
-        // onClickEvent에 등록해둔 메소드 실행
+        // onClickEvent에 등록해둔 메소드 실행(?를 붙여 null인지 확인)
         onClickEvent?.Invoke();
     }
 }

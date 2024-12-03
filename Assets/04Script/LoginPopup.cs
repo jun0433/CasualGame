@@ -89,6 +89,8 @@ public class LoginPopup : LoginBase
             {
                 SetMessage($"{inputFieldID.text}님 환영합니다.");
                 LeanTween.scale(loginPopup, Vector3.zero, 0.2f).setEase(LeanTweenType.clamp);
+
+                GameManager.Inst.AsyncLoadingNextScene(SceneName.LobbyScene);
             }
             // 로그인 실패
             else
