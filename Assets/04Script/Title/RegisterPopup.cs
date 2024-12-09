@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using BackEnd;
+using UnityEngine.Diagnostics;
 
 public class RegisterPopup : LoginBase
 {
@@ -108,9 +109,10 @@ public class RegisterPopup : LoginBase
                         SetMessage($"회원가입 성공, {registerID.text}님 환영합니다.");
 
                         // 회원가입에 성공했을 때 해당 계정의 게임 정보 생성
-                        BackendGameData.Instance.GameDataInsert();
-
-                        LeanTween.scale(registerPopup, Vector3.zero, 0.2f).setEase(LeanTweenType.clamp);
+                        BackendGameData.Inst.GameDataInsert();
+                        
+                        GameManager.Inst.AsyncLoadingNextScene(SceneName.LobbyScene);
+                        // LeanTween.scale(registerPopup, Vector3.zero, 0.2f).setEase(LeanTweenType.clamp);
                     }
                 });
             }

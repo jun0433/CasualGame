@@ -13,4 +13,10 @@ public class LobbyScenario : MonoBehaviour
         // Login을 한 유저의 정보를 Lobby에 출력
         user.GetUserInfoFromBackend();
     }
+
+    private void Start()
+    {
+        // Lobby 씬으로 왔을 때 데이터를 로드
+        BackendGameData.Inst.GameDataLoad();
+    }
 }
